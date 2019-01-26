@@ -1,0 +1,15 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  height: 100vh;
+  margin: 0;
+  background-color: #F7F7F7;
+  font-family: 'sf-text-regular', sans-serif;
+}
+
+@font-face {
+  font-family: 'sf-text-regular';
+  src: url("./fonts/SFUIText-Regular.woff") format('woff');
+  src: url("./fonts/SFUIText-Regular.ttf") format('truetype');
+  src: url("./fonts/SFUIText-Regular.svg") format('svg');
+  src: url("./fonts/SFUIText-Regular.eot") format('eot');
+}

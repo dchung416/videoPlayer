@@ -1,0 +1,104 @@
+.video-container {
+  height: 521px;
+  width: 824px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  p {
+    color: #333333;
+    margin: 0px;
+  }
+  .video-title {
+    margin-top: 30px;
+    line-height: 28px;
+    font-size: 26px;
+    text-align: center;
+  }
+  .video-wrapper {
+    position: relative;
+    width: 304px;
+    height: 204px;
+    margin: 0 auto;
+    .overlay {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      z-index: 100;
+    }
+    .play-button-box {
+      background-color: #646791;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 10;
+      .play-button-arrow {
+        width: 0;
+        height: 0;
+        border-top: 12px solid transparent;
+        border-bottom: 12px solid transparent;
+        border-left: 16px solid white;
+        z-index: 10;
+      }
+    }
+    .play-button {
+      height: 48px;
+      width: 48px;
+      background-color: #646791;
+    }
+    video {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .transcript-container {
+    overflow: scroll;
+    padding: 0px 30px;
+  }
+  .transcript-wrapper {
+    .snippet-wrapper {
+      display: flex;
+      align-items: flex-end;
+      .speaker-circle {
+        height: 28px;
+        width: 28px;
+        border-radius: 50%;
+        background-color: black;
+        margin-right: 8px;
+        &.rep {
+          background-color: rgba(0,167,209,0.1);
+          border: solid 1px #00A7D1;
+        }
+        &.customer {
+          background-color: rgba(238,110,255,0.1);
+          border: solid 1px #EE6EFF;
+        }
+      }
+      .bubble-wrapper {
+        .speaker-name {
+          margin-left: 8px;
+          font-size: 12px;
+          &.hide {
+            display: none;
+          }
+        }
+        .transcript-bubble {
+          width: fit-content;
+          background-color: #F7F7F7;
+          border-radius: 100px;
+          margin-bottom: 1px;
+          p {
+            display: inline-block;
+            margin: 8px 12px;
+            font-size: 15px;
+          }
+        }
+      }
+    }
+  }
+}
