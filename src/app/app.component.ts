@@ -17,7 +17,7 @@ export class AppComponent {
   ) {
     this.router.navigate([''], {
       queryParams: {
-        id: this.invalidId
+        id: this.videoId
       }
     });
   }
