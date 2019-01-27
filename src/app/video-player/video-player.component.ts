@@ -20,6 +20,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   repIndexes: number[] = [];
   customerIndexes: number[] = [];
   videoNotFound = false;
+  videoId: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,16 +29,25 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    // this.querySubscription = this.route.queryParams.subscribe(res => {
+    //   const videoId = res.id;
+    //   if (videoId) {
+    //     this.videoNotFound = false;
+    //     this.getVideo(videoId);
+    //     this.getTranscript(videoId);
+    //   } else {
+    //     // This is in case an id was not passed in to the page
+    //     // If no id was passed in, then the error component will display
+    //     this.videoNotFound = true;
+    //   }
+    // });
     this.querySubscription = this.route.queryParams.subscribe(res => {
-      const videoId = res.id;
-      if (videoId) {
+      this.videoId = res.id;
+      if (this.videoId) {
         this.videoNotFound = false;
-        this.getVideo(videoId);
-        // console.log('video url', this.videoUrl);
-        this.getTranscript(videoId);
+        this.getVideo();
+        this.getTranscript();
       } else {
-        // This is in case an id was not passed in to the page
-        // If no id was passed in, then the error component will display
         this.videoNotFound = true;
       }
     });
@@ -47,17 +57,16 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     this.querySubscription.unsubscribe();
   }
 
-  getVideo(id: string) {
-    // this.videoUrl = this.data.getVideo(id);
-    if (this.data.getVideo(id) === 'not_found') {
+  getVideo() {
+    if (this.data.getVideo(this.videoId) === 'not_found') {
       this.videoNotFound = true;
     } else {
-      this.videoUrl = this.data.getVideo(id);
+      this.videoUrl = this.data.getVideo(this.videoId);
     }
   }
 
-  getTranscript(id: string) {
-    this.data.getTranscript(id).toPromise()
+  getTranscript() {
+    this.data.getTranscript(this.videoId).toPromise()
     .then((res: Transcript[]) => {
       this.videoTranscript = sortTranscript(res);
       this.getSpeakerIndices();
@@ -66,14 +75,14 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   }
 
   isRep(snip: Transcript) {
-    const speaker = snip.speaker;
+    const speaker: string = snip.speaker;
     return speaker === 'Rep';
   }
 
   showName(index: number) {
-    const isRep = this.videoTranscript[index].speaker === 'Rep';
-    const holdIndex = isRep ? this.repIndexes.indexOf(index) : this.customerIndexes.indexOf(index);
-    const prevIndex = isRep ? this.repIndexes[holdIndex - 1] : this.customerIndexes[holdIndex - 1];
+    const isRep: boolean = this.videoTranscript[index].speaker === 'Rep';
+    const holdIndex: number = isRep ? this.repIndexes.indexOf(index) : this.customerIndexes.indexOf(index);
+    const prevIndex: number = isRep ? this.repIndexes[holdIndex - 1] : this.customerIndexes[holdIndex - 1];
     if (holdIndex === 0) {
       return true;
     } else {
@@ -86,9 +95,9 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   }
 
   showCircle(index: number) {
-    const isRep = this.videoTranscript[index].speaker === 'Rep';
-    const holdIndex = isRep ? this.repIndexes.indexOf(index) : this.customerIndexes.indexOf(index);
-    const nextIndex = isRep ? this.repIndexes[holdIndex + 1] : this.customerIndexes[holdIndex + 1];
+    const isRep: boolean = this.videoTranscript[index].speaker === 'Rep';
+    const holdIndex: number = isRep ? this.repIndexes.indexOf(index) : this.customerIndexes.indexOf(index);
+    const nextIndex: number = isRep ? this.repIndexes[holdIndex + 1] : this.customerIndexes[holdIndex + 1];
     if (index === 0) {
       if (Math.abs(nextIndex - index) > 1) {
         return true;
