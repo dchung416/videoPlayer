@@ -11,6 +11,33 @@
     bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
-    max-height: 30px;
+    height: 30px;
+    img {
+      height: 100%;
+    }
   }
 }
+
+// media query breakpoint for devices between 768px and 1024px
+@media (min-width: 768px) and (max-width: 1024px) {
+  .wrapper {
+    .logo-container {
+      bottom: 15px;
+      height: 25px;
+    }
+  }
+}
+
+// media query breakpoint for devices between 481px and 767px
+@media (min-width: 481px) and (max-width: 767px) {
+  .wrapper {
+    .logo-container {
+      bottom: 12px;
+      height: 20px;
+    }
+  }
+}
+
+// I would add more breakpoints here for more device sizes
+// I would also start backwards, starting from mobile to desktop
+// but for this exercise I went backwards because the design specs given were desktop size

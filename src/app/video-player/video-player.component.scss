@@ -1,3 +1,4 @@
+// This is main css for screen sizes of width > 1024px
 .video-container {
   height: 521px;
   width: 824px;
@@ -78,11 +79,11 @@
     .snippet-wrapper {
       display: flex;
       align-items: flex-end;
+      margin-bottom: 3px;
       .speaker-circle {
         height: 28px;
         width: 28px;
         border-radius: 50%;
-        background-color: black;
         margin-right: 8px;
         &.rep {
           background-color: rgba(0,167,209,0.1);
@@ -99,6 +100,7 @@
       .bubble-wrapper {
         .speaker-name {
           margin-left: 8px;
+          margin-top: 10px;
           font-size: 12px;
           &.hide {
             display: none;
@@ -108,7 +110,6 @@
           width: fit-content;
           background-color: #F7F7F7;
           border-radius: 100px;
-          margin-bottom: 1px;
           p {
             display: inline-block;
             margin: 8px 12px;
@@ -119,3 +120,57 @@
     }
   }
 }
+
+// media query breakpoint for devices with a screen width between 768px and 1024px
+@media (min-width: 768px) and (max-width: 1024px) {
+  .video-container {
+    height: 450px;
+    width: 700px;
+    .video-title {
+      margin-top: 20px;
+      font-size: 20px;
+    }
+    .transcript-wrapper {
+      .snippet-wrapper {
+        .speaker-circle {
+          height: 24px;
+          width: 24px;
+        }
+      }
+    }
+  }
+}
+
+// media query breakpoint for devices with a screen width between 481px and 767px
+@media (min-width: 481px) and (max-width: 767px) {
+  .video-container {
+    height: 380px;
+    width: 450px;
+    .video-title {
+      margin-top: 15px;
+      font-size: 18px;
+    }
+    .transcript-wrapper {
+      .snippet-wrapper {
+        .speaker-circle {
+          height: 20px;
+          width: 20px;
+        }
+        .bubble-wrapper {
+          .speaker-name {
+            font-size: 10px;
+          }
+          .transcript-bubble {
+            p {
+              font-size: 12px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// I would add more breakpoints here for more device sizes
+// I would also start backwards, starting from mobile to desktop
+// but for this exercise I went backwards because the design specs given were desktop size

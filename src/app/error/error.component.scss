@@ -2,6 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  .error-img {
+    img {
+      height: 100%;
+    }
+  }
   .text-container {
     p {
       font-size: 30px;
@@ -9,3 +14,21 @@
     }
   }
 }
+
+// media query breakpoint for devices between 768px and 1024px
+@media (min-width: 768px) and (max-width: 1024px) {
+  .error-img {
+    height: 300px;
+  }
+}
+
+// media query breakpoint for devices between 481px and 767px
+@media (min-width: 481px) and (max-width: 767px) {
+  .error-img {
+    height: 250px;
+  }
+}
+
+// I would add more breakpoints here for more device sizes
+// I would also start backwards, starting from mobile to desktop
+// but for this exercise I went backwards because the design specs given were desktop size
