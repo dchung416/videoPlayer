@@ -8,6 +8,20 @@
     color: #333333;
     margin: 0px;
   }
+  .video-found {
+    display: flex;
+    flex-direction: column;
+    &.error {
+      display: none;
+    }
+  }
+  .video-not-found {
+    display: none;
+    &.error {
+      display: flex;
+      flex-direction: column;
+    }
+  }
   .video-title {
     margin-top: 30px;
     line-height: 28px;

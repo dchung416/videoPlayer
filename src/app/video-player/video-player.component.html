@@ -1,16 +1,17 @@
 <div class="video-container">
-  <p class="video-title">Moment from meeting with Two Pillars</p>
-  <div class="video-wrapper">
-    <div class="overlay" (click)="toggleVideo($event)">
-      <div #playButton class="play-button-box">
-        <div class="play-button-arrow"></div>
-        <div class="pause-button"></div>
+  <div class="video-found" [class.error]="videoNotFound">
+    <p class="video-title">Moment from meeting with Two Pillars</p>
+    <div class="video-wrapper">
+      <div class="overlay" (click)="toggleVideo($event)">
+        <div #playButton class="play-button-box">
+          <div class="play-button-arrow"></div>
+          <div class="pause-button"></div>
+        </div>
       </div>
+      <video #vid [src]="videoUrl"></video>
     </div>
-    <video #vid [src]="videoUrl"></video>
-  </div>
-  <div class="transcript-container">
-    <div class="transcript-wrapper">
+    <div class="transcript-container">
+      <div class="transcript-wrapper">
         <div *ngFor="let snip of videoTranscript; let i = index" class="snippet-wrapper">
           <div class="speaker-circle" [class.rep]="isRep(snip)" [class.customer]="!isRep(snip)" [class.hide]="!showCircle(i)"></div>
           <div class="bubble-wrapper">
@@ -21,5 +22,9 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="video-not-found" [class.error]="videoNotFound">
+    <app-error></app-error>
   </div>
 </div>

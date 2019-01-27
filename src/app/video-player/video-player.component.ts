@@ -19,6 +19,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   videoTranscript: Transcript[];
   repIndexes: number[] = [];
   customerIndexes: number[] = [];
+  videoNotFound = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,8 +31,14 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     this.querySubscription = this.route.queryParams.subscribe(res => {
       const videoId = res.id;
       if (videoId) {
+        this.videoNotFound = false;
         this.getVideo(videoId);
+        // console.log('video url', this.videoUrl);
         this.getTranscript(videoId);
+      } else {
+        // This is in case an id was not passed in to the page
+        // If no id was passed in, then the error component will display
+        this.videoNotFound = true;
       }
     });
   }
@@ -41,7 +48,12 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
   }
 
   getVideo(id: string) {
-    this.videoUrl = this.data.getVideo(id);
+    // this.videoUrl = this.data.getVideo(id);
+    if (this.data.getVideo(id) === 'not_found') {
+      this.videoNotFound = true;
+    } else {
+      this.videoUrl = this.data.getVideo(id);
+    }
   }
 
   getTranscript(id: string) {
