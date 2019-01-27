@@ -5,7 +5,7 @@ import * as mock from '../mocks/videos';
 @Injectable({
   providedIn: 'root'
 })
-export class DataServiceService {
+export class DataService {
 
   constructor(
     private http: HttpClient

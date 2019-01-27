@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/co
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 // import * as mock from '../../mocks/transcript';
-import { DataServiceService } from '../data-service.service';
+import { DataService } from '../data.service';
 import { Transcript } from '../../models/transcript';
 
 @Component({
@@ -23,7 +23,7 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private data: DataServiceService
+    private data: DataService
   ) {
   }
 
