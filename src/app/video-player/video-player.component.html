@@ -12,7 +12,7 @@
   <div class="transcript-container">
     <div class="transcript-wrapper">
         <div *ngFor="let snip of videoTranscript; let i = index" class="snippet-wrapper">
-          <div class="speaker-circle" [class.rep]="isRep(snip)" [class.customer]="!isRep(snip)" [class.hide]="showCircle(i)"></div>
+          <div class="speaker-circle" [class.rep]="isRep(snip)" [class.customer]="!isRep(snip)" [class.hide]="!showCircle(i)"></div>
           <div class="bubble-wrapper">
             <p class="speaker-name" [class.hide]="!showName(i)">{{snip.speaker}}</p>
             <div class="transcript-bubble">

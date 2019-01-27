@@ -49,7 +49,6 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     .then((res: Transcript[]) => {
       this.videoTranscript = sortTranscript(res);
       this.getSpeakerIndices();
-      console.log('repindexes', this.repIndexes);
     })
     .catch(err => console.log(err));
   }
@@ -78,26 +77,24 @@ export class VideoPlayerComponent implements OnInit, OnDestroy {
     const isRep = this.videoTranscript[index].speaker === 'Rep';
     const holdIndex = isRep ? this.repIndexes.indexOf(index) : this.customerIndexes.indexOf(index);
     const nextIndex = isRep ? this.repIndexes[holdIndex + 1] : this.customerIndexes[holdIndex + 1];
-    if (index === this.videoTranscript.length - 1) {
-      return true;
-    } else {
+    if (index === 0) {
       if (Math.abs(nextIndex - index) > 1) {
         return true;
       } else {
         return false;
       }
+    } else if (index === this.videoTranscript.length - 1 ||
+      (holdIndex === this.repIndexes.length - 1) ||
+      (holdIndex === this.customerIndexes.length - 1)) {
+      return true;
+    } else {
+      const prevIndex = isRep ? this.repIndexes[holdIndex - 1] : this.customerIndexes[holdIndex - 1];
+      if ((Math.abs(nextIndex - index) > 1) && Math.abs(prevIndex - index) > 1 || Math.abs(nextIndex - index) > 1) {
+        return true;
+      } else {
+        return false;
+      }
     }
-    // const repIndex = this.repIndexes.indexOf(index);
-    // if (repIndex === this.videoTranscript.length - 1) {
-    //   return true;
-    // } else {
-    //   const nextIndex = this.repIndexes[repIndex + 1];
-    //   if (Math.abs(nextIndex - index) > 1) {
-    //     return true;
-    //   } else {
-    //     return false;
-    //   }
-    // }
   }
 
   toggleVideo(e: any) {

@@ -78,6 +78,9 @@
           background-color: rgba(238,110,255,0.1);
           border: solid 1px #EE6EFF;
         }
+        &.hide {
+          visibility: hidden;
+        }
       }
       .bubble-wrapper {
         .speaker-name {
